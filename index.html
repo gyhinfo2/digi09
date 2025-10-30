@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Digitális Kultúra - Interaktív oktatási platform középiskolásoknak">
+    <meta property="og:title" content="Digitális Kultúra Oktatási Platform">
+    <meta property="og:description" content="Átfogó digitális kultúra oktatás magyar középiskolásoknak">
+    <meta property="og:type" content="website">
+    <title>Digitális Kultúra - Középiskolai Oktatási Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .topic-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+        
+        .nav-sticky {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95);
+        }
+        
+        .progress-bar {
+            height: 4px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s ease;
+        }
+
+        .module-icon {
+            font-size: 3rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .accordion-content.active {
+            max-height: 500px;
+        }
+
+        .resource-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin: 0.25rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="nav-sticky shadow-md">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <i class="fas fa-laptop-code text-3xl text-purple-600"></i>
+                    <h1 class="text-2xl font-bold text-gray-800">Digitális Kultúra</h1>
+                </div>
+                <button id="mobile-menu-btn" class="md:hidden text-gray-600 hover:text-purple-600">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+                <ul id="nav-menu" class="hidden md:flex space-x-6">
+                    <li><a href="#home" class="text-gray-700 hover:text-purple-600 font-medium transition">Kezdőlap</a></li>
+                    <li><a href="#modules" class="text-gray-700 hover:text-purple-600 font-medium transition">Modulok</a></li>
+                    <li><a href="#resources" class="text-gray-700 hover:text-purple-600 font-medium transition">Források</a></li>
+                    <li><a href="#about" class="text-gray-700 hover:text-purple-600 font-medium transition">Rólunk</a></li>
+                </ul>
+            </div>
+            <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-2">
+                <a href="#home" class="block py-2 text-gray-700 hover:text-purple-600">Kezdőlap</a>
+                <a href="#modules" class="block py-2 text-gray-700 hover:text-purple-600">Modulok</a>
+                <a href="#resources" class="block py-2 text-gray-700 hover:text-purple-600">Források</a>
+                <a href="#about" class="block py-2 text-gray-700 hover:text-purple-600">Rólunk</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-gradient text-white py-20">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-5xl md:text-6xl font-bold mb-6">Tanuljunk Együtt Digitális Kultúrát!</h2>
+                <p class="text-xl md:text-2xl mb-8 opacity-90">
+                    Átfogó oktatási platform középiskolásoknak - A Magyar Oktatási Hatóság kerettantervének megfelelően
+                </p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="#modules" class="bg-white text-purple-600 px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition shadow-lg">
+                        <i class="fas fa-rocket mr-2"></i>Kezdjük el!
+                    </a>
+                    <a href="#resources" class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-purple-600 transition">
+                        <i class="fas fa-book mr-2"></i>Források
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Features -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-check-circle text-purple-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-2">NAT Megfelelő</h3>
+                    <p class="text-gray-600 text-sm">Magyar kerettanterv alapján</p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-users text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-2">Interaktív</h3>
+                    <p class="text-gray-600 text-sm">Gyakorlati feladatokkal</p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-mobile-alt text-green-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-2">Reszponzív</h3>
+                    <p class="text-gray-600 text-sm">Minden eszközön elérhető</p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-orange-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-euro-sign text-orange-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-2">Költséghatékony</h3>
+                    <p class="text-gray-600 text-sm">Ingyenes és nyílt források</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Learning Modules -->
+    <section id="modules" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Tanulási Modulok</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    10 átfogó modul, amelyek lefedik a digitális kultúra minden aspektusát
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Module 1: Word Processors -->
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                    <div class="module-icon mb-4">
+                        <i class="fas fa-file-word"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3">Szövegszerkesztés</h3>
+                    <p class="text-gray-600 mb-4">
+                        Professzionális dokumentumok készítése: formázás, stílusok, táblázatok és együttműködés.
+                    </p>
+                    <ul class="space-y-2 mb-4">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                            <span class="text-sm">Microsoft Word és LibreOffice Writer</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                            <span class="text-sm">Dokumentum formázás és stílusok</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                            <span class="text-sm">Tartalomjegyzék és hivatkozások</span>
+                        </li>
+                    </ul>
+                    <a href="word-processors.html" class="inline-block bg-purple-600 text-white px-6 py-2 rounded-full hover:bg-purple-700 transition">
+                        Tovább <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Module 2: Computer Graphics -->
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                    <div class="module-icon mb-4">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3">Számítógépes Grafika</h3>
+                    <p class="text-gray-600 mb-4">
+                        Pixeles és vektoros grafika: fotószerkesztés, logótervezés és digitális művészet.
+                    </p>
+                    <ul class="space-y-2 mb-4">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                            <span class="text-sm">Raszteres vs. Vektoros grafika</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                            <span class="text-sm">GIMP és Inkscape használata</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                            <span class="text-sm">Színelmélet és kompozíció</span>
+                        </li>
+                    </ul>
+                    <a href="graphics.html" class="inline-block bg-purple-600 text-white px-6 py-2 rounded-full hover:bg-purple-700 transition">
+                        Tovább <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Module 3: Multimedia Editing -->
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                    <div class="module-icon mb-4">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3">Multimédia Szerkesztés</h3>
+                    <p class="text-gray-600 mb-4">
+                        Videószerkesztés, hangkeverés és multimédiás tartalom előállítása.
+                    </p>
+                    <ul class="space-y-2 mb-4">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                            <span class="text-sm">Videószerkesztés alapjai</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                            <span class="text-sm">DaVinci Resolve és Shotcut</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                            <span class="text-sm">Hangszerkesztés Audacity-vel</span>
+                        </li>
+                    </ul>
+                    <a href="multimedia.html" class="inline-block bg-purple-600 text-white px-6 py-2 rounded-full hover:bg-purple-700 transition">
+                        Tovább <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Module 4: Algorithmic Modeling -->
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                    <div class="module-icon mb-4">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3">Algoritmikus Modellezés</h3>
+                    <p class="text-gray-600 mb-4">
+                        Programozási alapok, algoritmusok és problémamegoldás lépésről lépésre.
+                    </p>
+                    <ul class="space-y-2 mb-4">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                            <span class="text-sm">Algoritmusok és folyamatábrák</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                            <span class="text-sm">Python programozás</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                            <span class="text-sm">Scratch vizuális programozás</span>
+                        </li>
+                    </ul>
+                    <a href="programming.html" class="inline-block bg-purple-600 text-white px-6 py-2 rounded-full hover:bg-purple-700 transition">
+                        Tovább <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Module 5: Mobile Technologies -->
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                    <div class="module-icon mb-4">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3">Mobil Technológiák</h3>
+                    <p class="text-gray-600 mb-4">
+                        Mobilalkalmazások, operációs rendszerek és okos eszközök használata.
+                    </p>
+                    <ul class="space-y-2 mb-4">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                            <span class="text-sm">Android és iOS alapok</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                            <span class="text-sm">Alkalmazásfejlesztés MIT App Inventor</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                            <span class="text-sm">Mobil biztonság és adatvédelem</span>
+                        </li>
+                    </ul>
+                    <a href="mobile.html" class="inline-block bg-purple-600 text-white px-6 py-2 rounded-full hover:bg-purple-700 transition">
+                        Tovább <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Module 6: Web Publishing -->
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                    <div class="module-icon mb-4">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3">Webes Publikálás</h3>
+                    <p class="text-gray-600 mb-4">
+                        Weboldalkészítés HTML, CSS és JavaScript használatával, valamint tartalomkezelés.
+                    </p>
+                    <ul class="space-y-2 mb-4">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                            <span class="text-sm">HTML és CSS alapok</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                            <span class="text-sm">Reszponzív webdesign</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                            <span class="text-sm">WordPress és CMS rendszerek</span>
+                        </li>
+                    </ul>
+                    <a href="web-publishing.html" class="inline-block bg-purple-600 text-white px-6 py-2 rounded-full hover:bg-purple-700 transition">
+                        Tovább <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Module 7: Spreadsheets -->
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                    <div class="module-icon mb-4">
+                        <i class="fas fa-table"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3">Táblázatkezelés</h3>
+                    <p class="text-gray-600 mb-4">
+                        Excel és Calc: adatelemzés, függvények, grafikonok és pivot táblák.
+                    </p>
+                    <ul class="space-y-2 mb-4">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                            <span class="text-sm">Függvények és képletek</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                            <span class="text-sm">Adatvizualizáció</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                            <span class="text-sm">Pivot táblák és adatelemzés</span>
+                        </li>
+                    </ul>
+                    <a href="spreadsheets.html" class="inline-block bg-purple-600 text-white px-6 py-2 rounded-full hover:bg-purple-700 transition">
+                        Tovább <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Module 8: Information Society -->
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                    <div class="module-icon mb-4">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3">Információs Társadalom</h3>
+                    <p class="text-gray-600 mb-4">
+                        E-világ, digitális gazdaság, okos városok és a technológia társadalmi hatásai.
+                    </p>
+                    <ul class="space-y-2 mb-4">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                            <span class="text-sm">E-kormányzat és e-közigazgatás</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                            <span class="text-sm">Digitális gazdaság</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                            <span class="text-sm">Okos városok és IoT</span>
+                        </li>
+                    </ul>
+                    <a href="info-society.html" class="inline-block bg-purple-600 text-white px-6 py-2 rounded-full hover:bg-purple-700 transition">
+                        Tovább <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Module 9: Online Communities -->
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                    <div class="module-icon mb-4">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3">Online Közösségek</h3>
+                    <p class="text-gray-600 mb-4">
+                        Közösségi média, digitális kommunikáció és online együttműködés eszközei.
+                    </p>
+                    <ul class="space-y-2 mb-4">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                            <span class="text-sm">Közösségi média platformok</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                            <span class="text-sm">Online etikett és netiketta</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                            <span class="text-sm">Együttműködési eszközök</span>
+                        </li>
+                    </ul>
+                    <a href="online-communities.html" class="inline-block bg-purple-600 text-white px-6 py-2 rounded-full hover:bg-purple-700 transition">
+                        Tovább <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Module 10: Digital Devices -->
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                    <div class="module-icon mb-4">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3">Digitális Eszközök</h3>
+                    <p class="text-gray-600 mb-4">
+                        Számítógép hardver, operációs rendszerek, karbantartás és hibaelhárítás.
+                    </p>
+                    <ul class="space-y-2 mb-4">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                            <span class="text-sm">Hardver komponensek</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                            <span class="text-sm">Windows és Linux OS</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                            <span class="text-sm">Karbantartás és biztonság</span>
+                        </li>
+                    </ul>
+                    <a href="digital-devices.html" class="inline-block bg-purple-600 text-white px-6 py-2 rounded-full hover:bg-purple-700 transition">
+                        Tovább <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section id="resources" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Ingyenes Források és Eszközök</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Költséghatékony megoldások iskolák számára - csak nyílt forráskódú és ingyenes szoftverek
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-gray-50 rounded-xl p-6 border-2 border-gray-200">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">
+                        <i class="fas fa-file-alt text-blue-600 mr-2"></i>Irodai Alkalmazások
+                    </h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-download text-green-500 mr-2 mt-1"></i>
+                            <div>
+                                <a href="https://www.libreoffice.org/" target="_blank" class="text-purple-600 hover:underline font-medium">LibreOffice</a>
+                                <p class="text-sm text-gray-600">Teljes irodai csomag (Writer, Calc, Impress)</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-download text-green-500 mr-2 mt-1"></i>
+                            <div>
+                                <a href="https://www.google.com/docs/about/" target="_blank" class="text-purple-600 hover:underline font-medium">Google Workspace</a>
+                                <p class="text-sm text-gray-600">Online együttműködési eszközök</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-gray-50 rounded-xl p-6 border-2 border-gray-200">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">
+                        <i class="fas fa-image text-pink-600 mr-2"></i>Grafikai Eszközök
+                    </h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-download text-green-500 mr-2 mt-1"></i>
+                            <div>
+                                <a href="https://www.gimp.org/" target="_blank" class="text-purple-600 hover:underline font-medium">GIMP</a>
+                                <p class="text-sm text-gray-600">Pixeles képszerkesztés</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-download text-green-500 mr-2 mt-1"></i>
+                            <div>
+                                <a href="https://inkscape.org/" target="_blank" class="text-purple-600 hover:underline font-medium">Inkscape</a>
+                                <p class="text-sm text-gray-600">Vektoros grafika</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-download text-green-500 mr-2 mt-1"></i>
+                            <div>
+                                <a href="https://www.canva.com/" target="_blank" class="text-purple-600 hover:underline font-medium">Canva</a>
+                                <p class="text-sm text-gray-600">Online design eszköz (ingyenes verzió)</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-gray-50 rounded-xl p-6 border-2 border-gray-200">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">
+                        <i class="fas fa-video text-red-600 mr-2"></i>Multimédia
+                    </h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-download text-green-500 mr-2 mt-1"></i>
+                            <div>
+                                <a href="https://www.blackmagicdesign.com/products/davinciresolve" target="_blank" class="text-purple-600 hover:underline font-medium">DaVinci Resolve</a>
+                                <p class="text-sm text-gray-600">Professzionális videószerkesztés</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-download text-green-500 mr-2 mt-1"></i>
+                            <div>
+                                <a href="https://www.audacityteam.org/" target="_blank" class="text-purple-600 hover:underline font-medium">Audacity</a>
+                                <p class="text-sm text-gray-600">Hangszerkesztés</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-download text-green-500 mr-2 mt-1"></i>
+                            <div>
+                                <a href="https://shotcut.org/" target="_blank" class="text-purple-600 hover:underline font-medium">Shotcut</a>
+                                <p class="text-sm text-gray-600">Egyszerű videószerkesztő</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-gray-50 rounded-xl p-6 border-2 border-gray-200">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">
+                        <i class="fas fa-code text-green-600 mr-2"></i>Programozás
+                    </h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-download text-green-500 mr-2 mt-1"></i>
+                            <div>
+                                <a href="https://scratch.mit.edu/" target="_blank" class="text-purple-600 hover:underline font-medium">Scratch</a>
+                                <p class="text-sm text-gray-600">Vizuális programozás</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-download text-green-500 mr-2 mt-1"></i>
+                            <div>
+                                <a href="https://www.python.org/" target="_blank" class="text-purple-600 hover:underline font-medium">Python</a>
+                                <p class="text-sm text-gray-600">Programozási nyelv</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-download text-green-500 mr-2 mt-1"></i>
+                            <div>
+                                <a href="https://code.visualstudio.com/" target="_blank" class="text-purple-600 hover:underline font-medium">VS Code</a>
+                                <p class="text-sm text-gray-600">Kódszerkesztő</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-gray-50 rounded-xl p-6 border-2 border-gray-200">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">
+                        <i class="fas fa-mobile-alt text-indigo-600 mr-2"></i>Mobil Fejlesztés
+                    </h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-download text-green-500 mr-2 mt-1"></i>
+                            <div>
+                                <a href="https://appinventor.mit.edu/" target="_blank" class="text-purple-600 hover:underline font-medium">MIT App Inventor</a>
+                                <p class="text-sm text-gray-600">Android alkalmazásfejlesztés</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-download text-green-500 mr-2 mt-1"></i>
+                            <div>
+                                <a href="https://thunkable.com/" target="_blank" class="text-purple-600 hover:underline font-medium">Thunkable</a>
+                                <p class="text-sm text-gray-600">Keresztplatformos app fejlesztés</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-gray-50 rounded-xl p-6 border-2 border-gray-200">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">
+                        <i class="fas fa-globe text-cyan-600 mr-2"></i>Webfejlesztés
+                    </h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-download text-green-500 mr-2 mt-1"></i>
+                            <div>
+                                <a href="https://wordpress.org/" target="_blank" class="text-purple-600 hover:underline font-medium">WordPress</a>
+                                <p class="text-sm text-gray-600">Tartalomkezelő rendszer</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-download text-green-500 mr-2 mt-1"></i>
+                            <div>
+                                <a href="https://www.codecademy.com/" target="_blank" class="text-purple-600 hover:underline font-medium">Codecademy</a>
+                                <p class="text-sm text-gray-600">HTML/CSS/JS tanulás</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mt-12 bg-gradient-to-r from-purple-100 to-blue-100 rounded-xl p-8">
+                <h3 class="text-2xl font-bold text-gray-800 mb-4">
+                    <i class="fas fa-lightbulb text-yellow-500 mr-2"></i>Költségvetési Tippek Iskoláknak
+                </h3>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-semibold text-gray-800 mb-2">Szoftver Választás</h4>
+                        <ul class="space-y-2 text-gray-700">
+                            <li><i class="fas fa-check-circle text-green-500 mr-2"></i>Nyílt forráskódú szoftverek előnyben</li>
+                            <li><i class="fas fa-check-circle text-green-500 mr-2"></i>Ingyenes oktatási licenszek (pl. GitHub Student)</li>
+                            <li><i class="fas fa-check-circle text-green-500 mr-2"></i>Felhőalapú megoldások (Google, Microsoft 365 EDU)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-gray-800 mb-2">Hardver Optimalizálás</h4>
+                        <ul class="space-y-2 text-gray-700">
+                            <li><i class="fas fa-check-circle text-green-500 mr-2"></i>Linux operációs rendszer régebbi gépeken</li>
+                            <li><i class="fas fa-check-circle text-green-500 mr-2"></i>Chromebook alternatíva alacsony költséggel</li>
+                            <li><i class="fas fa-check-circle text-green-500 mr-2"></i>BYOD (Bring Your Own Device) stratégia</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-gray-800 mb-4">A Platformról</h2>
+                    <p class="text-xl text-gray-600">
+                        Magyar Oktatási Hatóság kerettantervének megfelelő digitális kultúra oktatás
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">
+                        <i class="fas fa-graduation-cap text-purple-600 mr-2"></i>Kerettantervi Megfelelőség
+                    </h3>
+                    <p class="text-gray-700 mb-4">
+                        Ez a platform a Magyar Oktatási Hatóság által meghatározott Nemzeti Alaptanterv (NAT) 
+                        és a középiskolai informatika/digitális kultúra kerettanterv követelményeinek megfelelően készült.
+                    </p>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-semibold text-gray-800 mb-2">Tantárgyi Követelmények</h4>
+                            <ul class="space-y-1 text-gray-700 text-sm">
+                                <li><i class="fas fa-check text-green-500 mr-2"></i>Digitális kompetencia fejlesztése</li>
+                                <li><i class="fas fa-check text-green-500 mr-2"></i>Információkezelés és -feldolgozás</li>
+                                <li><i class="fas fa-check text-green-500 mr-2"></i>Algoritmikus gondolkodás</li>
+                                <li><i class="fas fa-check text-green-500 mr-2"></i>Problémamegoldás</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800 mb-2">Kulcskompetenciák</h4>
+                            <ul class="space-y-1 text-gray-700 text-sm">
+                                <li><i class="fas fa-check text-green-500 mr-2"></i>Digitális kultúra</li>
+                                <li><i class="fas fa-check text-green-500 mr-2"></i>Kommunikáció</li>
+                                <li><i class="fas fa-check text-green-500 mr-2"></i>Kreativitás és innováció</li>
+                                <li><i class="fas fa-check text-green-500 mr-2"></i>Együttműködés</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">
+                        <i class="fas fa-euro-sign text-green-600 mr-2"></i>Költséghatékony Megoldás
+                    </h3>
+                    <p class="text-gray-700 mb-4">
+                        A platform teljes mértékben ingyenes és nyílt forráskódú eszközökre épül, 
+                        így minimális költségvetéssel is megvalósítható az oktatás.
+                    </p>
+                    <div class="bg-green-50 border-l-4 border-green-500 p-4 mb-4">
+                        <p class="text-green-800">
+                            <i class="fas fa-info-circle mr-2"></i>
+                            <strong>Becsült költség tanulónként/év:</strong> 0-5.000 Ft (csak opcionális eszközök esetén)
+                        </p>
+                    </div>
+                    <ul class="space-y-2 text-gray-700">
+                        <li><i class="fas fa-check-circle text-green-500 mr-2"></i>Ingyenes szoftverek (LibreOffice, GIMP, Python stb.)</li>
+                        <li><i class="fas fa-check-circle text-green-500 mr-2"></i>Felhőalapú megoldások (Google Workspace for Education)</li>
+                        <li><i class="fas fa-check-circle text-green-500 mr-2"></i>Nyílt oktatási források (OER)</li>
+                        <li><i class="fas fa-check-circle text-green-500 mr-2"></i>Közösségi támogatás és dokumentáció</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">
+                        <i class="fas fa-users text-blue-600 mr-2"></i>Kinek Ajánljuk?
+                    </h3>
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="text-center">
+                            <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <i class="fas fa-user-graduate text-blue-600 text-2xl"></i>
+                            </div>
+                            <h4 class="font-semibold text-gray-800 mb-2">Diákoknak</h4>
+                            <p class="text-sm text-gray-600">9-12. évfolyamos középiskolások számára</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <i class="fas fa-chalkboard-teacher text-purple-600 text-2xl"></i>
+                            </div>
+                            <h4 class="font-semibold text-gray-800 mb-2">Tanároknak</h4>
+                            <p class="text-sm text-gray-600">Informatika és digitális kultúra oktatóknak</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <i class="fas fa-school text-green-600 text-2xl"></i>
+                            </div>
+                            <h4 class="font-semibold text-gray-800 mb-2">Iskoláknak</h4>
+                            <p class="text-sm text-gray-600">Középiskolák és szakképző intézmények számára</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Digitális Kultúra</h3>
+                    <p class="text-gray-400 text-sm">
+                        Átfogó oktatási platform magyar középiskolások számára.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Modulok</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="word-processors.html" class="hover:text-white transition">Szövegszerkesztés</a></li>
+                        <li><a href="graphics.html" class="hover:text-white transition">Grafika</a></li>
+                        <li><a href="programming.html" class="hover:text-white transition">Programozás</a></li>
+                        <li><a href="web-publishing.html" class="hover:text-white transition">Webes Publikálás</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Források</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#resources" class="hover:text-white transition">Ingyenes Szoftverek</a></li>
+                        <li><a href="#resources" class="hover:text-white transition">Oktatási Anyagok</a></li>
+                        <li><a href="#about" class="hover:text-white transition">Kerettanterv</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Kapcsolat</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><i class="fas fa-envelope mr-2"></i>info@digitaliskultura.hu</li>
+                        <li><i class="fas fa-phone mr-2"></i>+36 1 234 5678</li>
+                        <li><i class="fas fa-map-marker-alt mr-2"></i>Budapest, Magyarország</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-center text-gray-400 text-sm">
+                <p>&copy; 2025 Digitális Kultúra Platform. Minden jog fenntartva. | NAT Megfelelő | Ingyenes Oktatási Forrás</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
